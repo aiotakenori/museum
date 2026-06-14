@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Container } from '@mui/material';
-import { useNavigate, useLocation, Routes, Route, Navigate } from 'react-router';
+import { BrowserRouter, useNavigate, useLocation, Routes, Route, Navigate } from 'react-router';
 import { GodzillaPage } from './pages/GodzillaPage';
 import { JapaneseArtPage } from './pages/JapaneseArtPage';
 import { MusabiPage } from './pages/MusabiPage';
@@ -46,7 +46,7 @@ function NavButton({ section, currentPath }: { section: typeof sections[0]; curr
   );
 }
 
-export default function App() {
+function AppInner() {
   const navigate = useNavigate();
   const location = useLocation();
   const isAbout = location.pathname === '/about';
@@ -140,5 +140,13 @@ export default function App() {
         </Container>
       </footer>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppInner />
+    </BrowserRouter>
   );
 }
